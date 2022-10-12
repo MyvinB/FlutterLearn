@@ -32,8 +32,16 @@ Text() --> Simple Text
 Scaffold() --> Further contains basic tree as syling and contains further stuff 
 
 Different Types of Widget 
- Visible Types of Widget -->> RaisedButton(),Tex(),Card();
+ Visible Types of Widget -->> RaisedButton(),Text(),Card();
  Invisible Types of Widgets --> Helps in structuring content and control how visible widgets are drawn into the screen 
  Row(),Column(), ListView()
 
  Container() it is a visible and invisible widget 
+
+ Lifting the state up 
+
+ final vs const 
+ const compile time const 
+ final run time constant 
+
+ only static fields can be declared as const

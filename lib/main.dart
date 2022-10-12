@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './question.dart';
+import './fact.dart';
+import './answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,21 +27,20 @@ void main() {
 //every file in a lib folder is its own library
 // concept of pr
 
-var listfacts = [
-  'Myvin is learning Dart',
-  'Bindu is learning Dart',
-  'We both are cool'
-];
-
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
+  const listfacts = [
+    'Myvin is learning Dart',
+    'Bindu is learning Dart',
+    'We both are cool'
+  ];
   var qsIdx = 0;
 
   void getFacts(int idx) {
@@ -57,11 +57,10 @@ class MyAppState extends State<MyApp> {
         appBar: AppBar(title: Text('Learning Flutter')),
         body: Column(
           children: [
-            Question(listfacts[qsIdx]),
-            ElevatedButton(
-                child: Text('Fact 1 '), onPressed: () => getFacts(0)),
-            ElevatedButton(child: Text('Fact 2'), onPressed: () => getFacts(1)),
-            ElevatedButton(child: Text('Fact 3'), onPressed: () => getFacts(2))
+            Fact(listfacts[qsIdx]),
+            Answer('Fact 1', () => getFacts(0)),
+            Answer('Fact 2', () => getFacts(1)),
+            Answer('Fact 3', () => getFacts(2))
           ],
         ),
       ),
