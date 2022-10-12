@@ -45,3 +45,6 @@ Different Types of Widget
  final run time constant 
 
  only static fields can be declared as const
+
+
+String? userName = 'Max'; ? here is like an optional value at compile time though

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import './fact.dart';
-import './answer.dart';
+import 'package:first_app/quiz.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,18 +35,34 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  const listfacts = [
-    'Myvin is learning Dart',
-    'Bindu is learning Dart',
-    'We both are cool'
+  var questions = [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['Dog', 'Panda', 'Monkey', 'Lion'],
+    },
+    {
+      'questionText': 'Who\'s your favorite instructor?',
+      'answers': ['Striver', 'Avice', 'Vinay', 'Rahul'],
+    },
+    {
+      'questionText': 'Who\'s your favorite Rapper?',
+      'answers': ['Whiz Khalifa', 'Eminem', 'Drake', 'Lil Wayne'],
+    }
   ];
+
   var qsIdx = 0;
 
-  void getFacts(int idx) {
+  void nextQuestion() {
     print("Yo Are you being called mate");
-    setState(() {
-      qsIdx = idx;
-    });
+    if (qsIdx < questions.length - 1) {
+      setState(() {
+        qsIdx = qsIdx + 1;
+      });
+    }
   }
 
   @override
@@ -55,14 +70,10 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('Learning Flutter')),
-        body: Column(
-          children: [
-            Fact(listfacts[qsIdx]),
-            Answer('Fact 1', () => getFacts(0)),
-            Answer('Fact 2', () => getFacts(1)),
-            Answer('Fact 3', () => getFacts(2))
-          ],
-        ),
+        body: qsIdx < questions.length - 1
+            ? Quiz(
+                questions: questions, nextQuestion: nextQuestion, qsIdx: qsIdx)
+            : Center(child: Text(' You are done mate')),
       ),
     );
   }
